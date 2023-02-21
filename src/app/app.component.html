@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row border border-secondary mt-3 mb-3">
+    <div class="col-md-7">
+      <h4>Tabla de usuarios Guardados</h4>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of studentsList; index as i">
+            <th>{{ i + 1 }}</th>
+            <td>{{ item.nameStudent }}</td>
+            <td>{{ item.emailStudent }}</td>
+          </tr>
+          <tr *ngFor="let item of professorList; index as i">
+            <th>{{ studentsList.length + i + 1 }}</th>
+            <td>{{ item.nameProfessor }}</td>
+            <td>{{ item.emailProfessor }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="form-group mx-3">
+        <label class="text-white" for="materia">Tipo usuario</label>
+        <select class="form-select" aria-label="Default select example">
+          <option selected>Seleccione el tipo de usuario</option>
+          <option (click)="changeStateProfessor()">Profesor</option>
+          <option (click)="changeStateStudent()">Estudiante</option>
+        </select>
+
+        <form
+          autocomplete="off"
+          [formGroup]="usersForm"
+          (ngSubmit)="createUser()"
+        >
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label"
+              >Nombre del Usuario</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="nameProfessor"
+              formControlName="name"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label"
+              >Email del Usuario</label
+            >
+            <input
+              type="email"
+              class="form-control"
+              id="emailProfessor"
+              formControlName="email"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Crear Profesor</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
